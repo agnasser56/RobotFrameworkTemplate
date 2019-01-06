@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20181107 22:55:25.015" generator="Robot 3.0.4 (Python 3.5.0 on win32)">
+<suite id="s1" name="EndToEnd" source="E:\F\Automation\RobotFM\NewTours\Tests\EndToEnd.robot">
+<test id="s1-t1" name="Verify User Login">
+<kw name="Begin Web Test" library="CommonWeb" type="setup">
+<kw name="Create Webdriver" library="Selenium2Library">
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<arguments>
+<arg>Chrome</arg>
+<arg>executable_path=E:/InnoDev/Automation/chromedriver.exe</arg>
+</arguments>
+<msg level="INFO" timestamp="20181107 22:55:25.397">Creating an instance of the Chrome WebDriver.</msg>
+<status endtime="20181107 22:55:27.860" status="PASS" starttime="20181107 22:55:25.397"></status>
+</kw>
+<kw name="Go To" library="Selenium2Library">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<arguments>
+<arg>https://id.uatc.walem.io/id/login</arg>
+</arguments>
+<msg level="INFO" timestamp="20181107 22:55:27.861">Opening url 'https://id.uatc.walem.io/id/login'</msg>
+<status endtime="20181107 22:55:33.847" status="PASS" starttime="20181107 22:55:27.860"></status>
+</kw>
+<status endtime="20181107 22:55:33.848" status="PASS" starttime="20181107 22:55:25.396"></status>
+</kw>
+<kw name="Login With User" library="Login">
+<arguments>
+<arg>${Walem_User}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>${txtUserName}</arg>
+<arg>${Credentials.UserName}</arg>
+</arguments>
+<msg level="INFO" timestamp="20181107 22:55:33.849">Typing text 'automation' into text field 'id=login-username'.</msg>
+<status endtime="20181107 22:55:34.023" status="PASS" starttime="20181107 22:55:33.849"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>${txtPassword}</arg>
+<arg>${Credentials.Password}</arg>
+</arguments>
+<msg level="INFO" timestamp="20181107 22:55:34.024">Typing text 'Ww#123456' into text field 'id=login-password'.</msg>
+<status endtime="20181107 22:55:34.173" status="PASS" starttime="20181107 22:55:34.024"></status>
+</kw>
+<kw name="Element Exists" library="CommonWeb">
+<doc>Determines if the desired element exists</doc>
+<arguments>
+<arg>//input[@name='jcaptcha']</arg>
+</arguments>
+<assign>
+<var>${captchaExist}</var>
+</assign>
+<kw name="Get Matching Xpath Count" library="Selenium2Library">
+<doc>*DEPRECATED in Selenium2Library 3.2.* Use `Get Element Count` instead.</doc>
+<arguments>
+<arg>${xpath}</arg>
+</arguments>
+<assign>
+<var>${imageCount}</var>
+</assign>
+<msg level="WARN" timestamp="20181107 22:55:34.174">Keyword 'Selenium2Library.Get Matching Xpath Count' is deprecated. Use `Get Element Count` instead.</msg>
+<msg level="INFO" timestamp="20181107 22:55:34.202">${imageCount} = 0</msg>
+<status endtime="20181107 22:55:34.202" status="PASS" starttime="20181107 22:55:34.174"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${imageCount} &gt; 0</arg>
+</arguments>
+<assign>
+<var>${imageExists}</var>
+</assign>
+<msg level="INFO" timestamp="20181107 22:55:34.203">${imageExists} = False</msg>
+<status endtime="20181107 22:55:34.203" status="PASS" starttime="20181107 22:55:34.203"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${imageExists}</arg>
+</arguments>
+<msg level="INFO" timestamp="20181107 22:55:34.203">False</msg>
+<status endtime="20181107 22:55:34.203" status="PASS" starttime="20181107 22:55:34.203"></status>
+</kw>
+<msg level="INFO" timestamp="20181107 22:55:34.204">${captchaExist} = False</msg>
+<status endtime="20181107 22:55:34.204" status="PASS" starttime="20181107 22:55:34.173"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${captchaExist} == True</arg>
+<arg>input text</arg>
+<arg>${txtcaptcha}</arg>
+<arg>123456</arg>
+</arguments>
+<status endtime="20181107 22:55:34.204" status="PASS" starttime="20181107 22:55:34.204"></status>
+</kw>
+<kw name="Click Link" library="Selenium2Library">
+<doc>Clicks a link identified by ``locator``.</doc>
+<arguments>
+<arg>${btnLogin}</arg>
+</arguments>
+<msg level="INFO" timestamp="20181107 22:55:34.205">Clicking link 'id=btn-login'.</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<msg level="INFO" timestamp="20181107 22:55:34.542" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status endtime="20181107 22:55:34.542" status="PASS" starttime="20181107 22:55:34.235"></status>
+</kw>
+<msg level="FAIL" timestamp="20181107 22:55:34.546">Link with locator 'id=btn-login' not found.</msg>
+<status endtime="20181107 22:55:34.546" status="FAIL" starttime="20181107 22:55:34.204"></status>
+</kw>
+<status endtime="20181107 22:55:34.546" status="FAIL" starttime="20181107 22:55:33.848"></status>
+</kw>
+<kw name="End Web Test" library="CommonWeb" type="teardown">
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status endtime="20181107 22:55:37.104" status="PASS" starttime="20181107 22:55:34.547"></status>
+</kw>
+<status endtime="20181107 22:55:37.105" status="PASS" starttime="20181107 22:55:34.547"></status>
+</kw>
+<doc>Covered Test Case : User Registration</doc>
+<tags>
+<tag>137784</tag>
+<tag>TEST002</tag>
+</tags>
+<status endtime="20181107 22:55:37.106" status="FAIL" starttime="20181107 22:55:25.395" critical="yes">Link with locator 'id=btn-login' not found.</status>
+</test>
+<doc>This is some basic info about the whole suite</doc>
+<status endtime="20181107 22:55:37.113" status="FAIL" starttime="20181107 22:55:25.029"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">137784</stat>
+<stat pass="0" fail="1">TEST002</stat>
+</tag>
+<suite>
+<stat pass="0" name="EndToEnd" id="s1" fail="1">EndToEnd</stat>
+</suite>
+</statistics>
+<errors>
+<msg level="WARN" timestamp="20181107 22:55:34.174">Keyword 'Selenium2Library.Get Matching Xpath Count' is deprecated. Use `Get Element Count` instead.</msg>
+</errors>
+</robot>
